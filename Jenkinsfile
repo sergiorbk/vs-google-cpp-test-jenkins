@@ -14,10 +14,7 @@ pipeline {
         
         stage('Build') {
             steps {
-                // Збірка проекту з Visual Studio
-                // template: bat '"path to MSBuild" test_repos.sln /t:Build /p:Configuration=Release'
-                bat '"E:\\Programs\\VS\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe" 
-                    test_repos.sln /t:Build /p:Configuration=Release'
+                bat '"E:\\Programs\\VS\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe" test_repos.sln /t:Build /p:Configuration=Release'
             }
         }
 
