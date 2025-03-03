@@ -5,8 +5,9 @@ pipeline {
         stage('Checkout') {
             steps {
                 git(
+                    branch: 'main',
                     url: 'https://github.com/sergiorbk/vs-google-cpp-test-jenkins.git',
-                    credentialsId: 'gh-repo-access-token-vs-google-cpp-test-jenkins'
+                    credentialsId: 'gh-repo-http-access-token-vs-google-cpp-test-jenkins'
                 )
             }
         }
