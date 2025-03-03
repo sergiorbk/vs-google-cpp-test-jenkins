@@ -4,15 +4,19 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'add here your url', credentialsId: 'add credentialsId'
+                git(
+                    url: 'https://github.com/sergiorbk/vs-google-cpp-test-jenkins.git',
+                    credentialsId: 'gh-repo-access-token-vs-google-cpp-test-jenkins'
+                )
             }
         }
         
         stage('Build') {
             steps {
-                // Крок для збірки проекту з Visual Studio
-                // Встановіть правильні шляхи до рішення/проекту та параметри MSBuild
-                bat '"path to MSBuild" test_repos.sln /t:Build /p:Configuration=Release'
+                // Збірка проекту з Visual Studio
+                // template: bat '"path to MSBuild" test_repos.sln /t:Build /p:Configuration=Release'
+                bat '"E:\\Programs\\VS\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe" 
+                    test_repos.sln /t:Build /p:Configuration=Release'
             }
         }
 
@@ -27,7 +31,8 @@ pipeline {
     post {
     always {
         // Publish test results using the junit step
-         // Specify the path to the XML test result files
+        // Specify the path to the XML test result files
+        junit 'test_report.xml'
     }
 }
 }
